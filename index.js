@@ -16,9 +16,15 @@ console.log(counterOne()); // 3
 console.log(counterTwo()); // 1
 console.log(counterTwo()); // 2
 ------------------*/
+function counter(){
+  return function(y){
+    return y += 1;
+  }
+}
 
-// const counterOne = counter();
-// const counterTwo = counter();
+const counterOne = counter();
+const counterTwo = counter();
+
 // console.log(counterOne(0)); // 1
 // console.log(counterOne(1)); // 2
 // console.log(counterOne(2)); // 3
@@ -46,8 +52,16 @@ console.log(counterFour()); // 4
 console.log(counterFour()); // 5
 ------------------*/
 
-// const counterThree = startingCounter(10);
-// const counterFour = startingCounter(3);
+function startingCounter(x){  
+    let count = x;   
+    return function(){
+      return count += 1; 
+    }
+}
+
+const counterThree = startingCounter(10);
+const counterFour = startingCounter(3);
+
 // console.log(counterThree()); // 11
 // console.log(counterThree()); // 12
 // console.log(counterThree()); // 13
@@ -72,9 +86,17 @@ console.log(counterFive()); // 1
 console.log(counterFive()); // "Time's up!"
 console.log(counterFive()); // "Time's up!"
 ------------------*/
+function countdown(x){
+  let count = x;
+  return function(){
+    count -= 1
+    if(count >= 1)
+    return count;
+    else return "Time's Up!"
+  }
+}
 
-
-  //  const counterFive = countdown(3);
+   const counterFive = countdown(3);
   //  console.log(counterFive()); // 2
   //  console.log(counterFive()); // 1
   //  console.log(counterFive()); // "Time's up!"
@@ -96,9 +118,14 @@ const multiplyByFive = multiplier(10);
 console.log(multiplyByFive(4)); // 20
 console.log(multiplyByTen(4)); // 40
 ------------------*/
+function multiplier(x){
+  return function(y){
+    return x * y;
+  }
+}
 
-// const multiplyByFive = multiplier(5);
-// const multiplyByTen = multiplier(10);
+const multiplyByFive = multiplier(5);
+const multiplyByTen = multiplier(10);
 // console.log(multiplyByFive(4)); // 20
 // console.log(multiplyByTen(4)); // 40
 
@@ -119,7 +146,15 @@ console.log(password("123pass!")); // Password correct.
 console.log(password("123pass")); // Password incorrect.
 ------------------*/
 
-  // const password = createPassword("123pass!");
+function createPassword(x){
+  return function(y){
+    if(y === x)
+    return "Password correct";
+    else return "Password incorrect"
+  }
+}
+
+  const password = createPassword("123pass!");
   // console.log(password("123pass!")); // Password correct.
   // console.log(password("123pass")); // Password incorrect.
 
@@ -145,12 +180,20 @@ console.log(marcoAccount(50, "add")); // 150
 console.log(marcoAccount(10, "add")); // 160
 console.log(marcoAccount(70, "subtract")); // 90
 ------------------*/
-
+function createBankAccount(x){
+  let balance = x;
+  return function(y, action){
+    if(action === "add")
+    return balance += y;
+    else if (action === "subtract")
+    return balance -= y;
+  }
+}
    
-// const marcoAccount = createBankAccount(100);
-// console.log(marcoAccount(50, "add")); // 150
-// console.log(marcoAccount(10, "add")); // 160
-// console.log(marcoAccount(70, "subtract")); // 90
+const marcoAccount = createBankAccount(100);
+console.log(marcoAccount(50, "add")); // 150
+console.log(marcoAccount(10, "add")); // 160
+console.log(marcoAccount(70, "subtract")); // 90
 
 /*------------------
 7)
@@ -165,10 +208,24 @@ This closure should return the bank account balance.
 Look back at the other functions you created to make sure
 you understand how they work!
 ------------------*/
+ const sofiaBank = createBank("Cod3ly!", 100);
+console.log(sofiaBank("Cod3ly!", 150, "add")); //250
+console.log(sofiaBank("Codely123", 150, "add")); //Password incorrect
+console.log(sofiaBank("Cod3ly!", 50, "subtract")); //200
 
+function createBank(password, startingBalance) {
+  const checkPassword = createPassword(password);
+  const bankAccount = createBankAccount(startingBalance);
 
-//  const sofiaBank = createBank("Cod3ly!", 100);
-// console.log(sofiaBank("Cod3ly!", 150, "add")); //250
-// console.log(sofiaBank("Codely123", 150, "add")); //Password incorrect
-// console.log(sofiaBank("Cod3ly!", 50, "subtract")); //200
+  return function(password, amount, action) {
+    let access = checkPassword(password);
 
+    if (access === "Password correct") {
+       //use your bankAccount function
+      //to add or subtract money here
+      return bankAccount(amount,action);
+    } else {
+    return access;
+    }
+  };
+}

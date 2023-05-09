@@ -8,11 +8,11 @@ function makeMultiplier(n){
 
 }
 
-const multiplyByTwo = makeMultiplier(2);
-const multiplyByFive = makeMultiplier(5);
+// const multiplyByTwo = makeMultiplier(2);
+// const multiplyByFive = makeMultiplier(5);
 
-console.log(multiplyByTwo(5)); // 10
-console.log(multiplyByFive(5)); // 25
+// console.log(multiplyByTwo(5)); // 10
+// console.log(multiplyByFive(5)); // 25
 
 /*--------------------------
     Closures
@@ -30,10 +30,10 @@ function createPasswordChecker(newPassword){
     }
 }
 
-const checkSofiaPassword =
-createPasswordChecker("123");
-checkSofiaPassword("333");  // false
-checkSofiaPassword("123");  // true
+// const checkSofiaPassword =
+// createPasswordChecker("123");
+// checkSofiaPassword("333");  // false
+// checkSofiaPassword("123");  // true
 
 /****************   Examples    ********************/
 
@@ -47,12 +47,12 @@ function makeAdder(x){
     }
 }
 
-const addFive = makeAdder(5); // this is the closure to call
-console.log(addFive(2));    //  7
+// const addFive = makeAdder(5); // this is the closure to call
+// console.log(addFive(2));    //  7
 
-const addTen = makeAdder(10);
-console.log(addTen(2)); //  12
-console.log(addTen(7)); // 17
+// const addTen = makeAdder(10);
+// console.log(addTen(2)); //  12
+// console.log(addTen(7)); // 17
 
 //---------------------------------------
 
@@ -68,7 +68,7 @@ function createBank(x){
     }
 }
 
-const sofiaBankTransactions = createBank(100);
-sofiaBankTransactions(50);  //  $$
-sofiaBankTransactions(20);  //  $$
-sofiaBankTransactions(-300);    //  OVERDRAWN
+// const sofiaBankTransactions = createBank(100);
+// sofiaBankTransactions(50);  //  $$
+// sofiaBankTransactions(20);  //  $$
+// sofiaBankTransactions(-300);    //  OVERDRAWN
