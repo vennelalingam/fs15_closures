@@ -16,9 +16,10 @@ console.log(counterOne()); // 3
 console.log(counterTwo()); // 1
 console.log(counterTwo()); // 2
 ------------------*/
+
 function counter(){
   return function(y){
-    return y += 1;
+    return (y += 1);
   }
 }
 
@@ -30,8 +31,6 @@ const counterTwo = counter();
 // console.log(counterOne(2)); // 3
 // console.log(counterTwo(0)); // 1
 // console.log(counterTwo(1)); // 2
-
-
 
 /*------------------
 2)
@@ -55,7 +54,7 @@ console.log(counterFour()); // 5
 function startingCounter(x){  
     let count = x;   
     return function(){
-      return count += 1; 
+      return (count += 1); 
     }
 }
 
@@ -86,13 +85,14 @@ console.log(counterFive()); // 1
 console.log(counterFive()); // "Time's up!"
 console.log(counterFive()); // "Time's up!"
 ------------------*/
+
 function countdown(x){
   let count = x;
   return function(){
-    count -= 1
+    count -= 1;
     if(count >= 1)
     return count;
-    else return "Time's Up!"
+    else return "Time's Up!";
   }
 }
 
@@ -118,9 +118,10 @@ const multiplyByFive = multiplier(10);
 console.log(multiplyByFive(4)); // 20
 console.log(multiplyByTen(4)); // 40
 ------------------*/
+
 function multiplier(x){
   return function(y){
-    return x * y;
+    return (x * y);
   }
 }
 
@@ -150,7 +151,7 @@ function createPassword(x){
   return function(y){
     if(y === x)
     return "Password correct";
-    else return "Password incorrect"
+    else return "Password incorrect";
   }
 }
 
@@ -180,14 +181,16 @@ console.log(marcoAccount(50, "add")); // 150
 console.log(marcoAccount(10, "add")); // 160
 console.log(marcoAccount(70, "subtract")); // 90
 ------------------*/
+
 function createBankAccount(x){
   let balance = x;
   return function(y, action){
     if(action === "add")
-    return balance += y;
+    return (balance += y);
     else if (action === "subtract")
-    return balance -= y;
-  }
+    return (balance -= y);
+    return balance;
+  }  
 }
    
 const marcoAccount = createBankAccount(100);
